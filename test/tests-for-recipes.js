@@ -83,6 +83,17 @@ describe('Recipes', function() {
       });
   });
 
+  it('should raise an error if a key is missing on POST', function() {
+    const newRecipe = {name: 'tea'};
+    return chai.request(app)
+      .post('/recipes')
+      .send(newRecipe)
+      .then(function(res) {
+        res.should.have.status(400);
+        
+      })
+  })
+
   // test strategy:
   //  1. initialize some update data (we won't have an `id` yet)
   //  2. make a GET request so we can get a recipe to update
