@@ -90,9 +90,11 @@ describe('Recipes', function() {
       .send(newRecipe)
       .then(function(res) {
         res.should.have.status(400);
-        
       })
-  })
+      .catch(function(e) {
+        e.should.have.status(400);
+      });
+  });
 
   // test strategy:
   //  1. initialize some update data (we won't have an `id` yet)
@@ -128,6 +130,7 @@ describe('Recipes', function() {
       // prove that the PUT request has right status code
       // and returns updated recipe
       .then(function(res) {
+
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('object');
@@ -152,4 +155,5 @@ describe('Recipes', function() {
         res.should.have.status(204);
       });
   });
+
 });
